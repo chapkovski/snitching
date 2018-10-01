@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Punishment decision by Principal
+{% endblock %}
+
+{% block content %}
+
+    <div class="alert alert-danger" role="alert">
+        <h3>Total sum of efforts made by workers: <strong>{{ group.total_performance }}</strong></h3>
+    </div>
+   <table class="table table-striped table-hover border">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Contribution</th>
+            <th>Punishment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i,j in data %}
+            <tr>
+                <td>Worker {{ j.worker_id }}</td>
+                <td>{{ j.get_effort_level_for_p }}</td>
+                <td>{% formfield i  label='' %}</td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+    {% next_button %}
+
+{% endblock %}

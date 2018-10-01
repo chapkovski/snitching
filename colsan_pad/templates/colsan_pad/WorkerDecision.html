@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Worker decision
+{% endblock %}
+
+{% block content %}
+    <h3>Cost-effort table:</h3>
+    <table class="table">
+        <tr>
+        <th>Effort level:</th>
+            {% for i in Constants.cost_effort_table.keys %}
+                <td>{{i}}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+                <th>Cost :</th>
+            {% for i in Constants.cost_effort_table.values %}
+                <td>{{i}}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    {% formfields %}
+    {% next_button %}
+
+{% endblock %}

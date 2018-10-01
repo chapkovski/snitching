@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Snitching decision
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-success" role="alert">
+        <h3>
+                For each level of effort made by other workers, choose whether you will inform
+            a Principal about their individual decisions
+        </h3>
+    </div>
+    {{ formset.management_form }}
+    <table class="table1 table table-striped table-hover table-bordered text-center ">
+        <thead>
+        <tr>
+            <th>Effort</th>
+            {% for w in player.get_other_workers %}
+                <th colspan="2">Worker {{ w.worker_id }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th></th>
+            {% for w in player.get_other_workers %}
+                <th>Not inform</th>
+                <th>Inform</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for f in formset %}
+            <tr>
+                <td>
+                    {{ f.instance.effort }}
+                    {% for hidden in f.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+
+                </td>
+
+
+                {% for i in f.decision %}
+                    <td>{{ i }}</td>
+                {% endfor %}
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    {% next_button %}
+
+{% endblock %}

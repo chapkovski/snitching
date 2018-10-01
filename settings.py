@@ -15,32 +15,40 @@ SESSION_CONFIGS = [
     {
         'name': 'baseline',
         'display_name': "Baseline (NO info; No WB)",
-        'num_demo_participants': 4,
-        'app_sequence': ['colsan_pad', 'three_pd'],
+        'num_demo_participants': 3,
+        'app_sequence': ['colsan_pad',
+                         # 'three_pd'
+                         ],
         'info': False,
         'wb': False,
     },
     {
         'name': 'info_off_wb_on',
         'display_name': "info off; WB on",
-        'num_demo_participants': 4,
-        'app_sequence': ['colsan_pad', 'three_pd'],
+        'num_demo_participants': 3,
+        'app_sequence': ['colsan_pad',
+                         # 'three_pd'
+                         ],
         'info': False,
         'wb': True,
     },
     {
         'name': 'info_on_wb_off',
         'display_name': "info on; WB off",
-        'num_demo_participants': 4,
-        'app_sequence': ['colsan_pad', 'three_pd'],
+        'num_demo_participants': 3,
+        'app_sequence': ['colsan_pad',
+                         # 'three_pd'
+                         ],
         'info': True,
         'wb': False,
     },
     {
         'name': 'info_on_wb_on',
         'display_name': "info on; WB on",
-        'num_demo_participants': 4,
-        'app_sequence': ['colsan_pad', 'three_pd'],
+        'num_demo_participants': 3,
+        'app_sequence': ['colsan_pad',
+                         # 'three_pd'
+                         ],
         'info': True,
         'wb': True,
     },
