@@ -12,14 +12,40 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    #{
-    #    'name': 'public_goods',
-    #    'display_name': "Public Goods",
-    #    'num_demo_participants': 3,
-    #    'app_sequence': ['public_goods', 'payment_info'],
-    #},
-]
+    {
+        'name': 'baseline',
+        'display_name': "Baseline (NO info; No WB)",
+        'num_demo_participants': 4,
+        'app_sequence': ['colsan_pad', 'three_pd'],
+        'info': False,
+        'wb': False,
+    },
+    {
+        'name': 'info_off_wb_on',
+        'display_name': "info off; WB on",
+        'num_demo_participants': 4,
+        'app_sequence': ['colsan_pad', 'three_pd'],
+        'info': False,
+        'wb': True,
+    },
+    {
+        'name': 'info_on_wb_off',
+        'display_name': "info on; WB off",
+        'num_demo_participants': 4,
+        'app_sequence': ['colsan_pad', 'three_pd'],
+        'info': True,
+        'wb': False,
+    },
+    {
+        'name': 'info_on_wb_on',
+        'display_name': "info on; WB on",
+        'num_demo_participants': 4,
+        'app_sequence': ['colsan_pad', 'three_pd'],
+        'info': True,
+        'wb': True,
+    },
 
+]
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans
@@ -30,7 +56,6 @@ REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
 
 ROOMS = []
-
 
 # AUTH_LEVEL:
 # this setting controls which parts of your site are freely accessible,
@@ -48,7 +73,6 @@ AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
-
 
 # Consider '', None, and '0' to be empty/false
 DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})

@@ -4,10 +4,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Philipp Chapkovski, Valeria Maggian, Luca Corazzini. Chapkovski@gmail.com'
 
 doc = """
-Your app description
+First stage of a colsan study on snitching: multiple-agents-one-principal with reporting option.
 """
 
 
@@ -26,4 +26,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    def role(self):
+        if self.id_in_group == 1:
+            return 'principal'
+        return 'employee'

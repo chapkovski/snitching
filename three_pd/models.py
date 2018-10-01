@@ -4,10 +4,10 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
+author = 'Philipp Chapkovski, Valeria Maggian, Luca Corazzini'
 
 doc = """
-Your app description
+Second stage of a colsan study on snitching: three-players Prisoner's Dilemma
 """
 
 
@@ -26,4 +26,5 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    def role(self):
+        return self.participant.colsan_pad_player.all().first().role()
