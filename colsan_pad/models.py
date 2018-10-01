@@ -75,7 +75,7 @@ class Player(BasePlayer):
     # todo: check for NO initials in prod.
     effort = models.IntegerField(doc='storing individual efforts by workers', label='Please choose the effort level',
                                  widget=widgets.RadioSelectHorizontal,
-                                 initial=4)
+                                 )
 
     wb = models.BooleanField(doc='snitching decision by a worker')
     worker_id = models.IntegerField()

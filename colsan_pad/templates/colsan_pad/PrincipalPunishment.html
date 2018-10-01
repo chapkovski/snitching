@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="alert alert-primary" role="alert">
+        <h3>Your role is: <strong>{{ player.role }}</strong></h3>
+    </div>
     <div class="alert alert-danger" role="alert">
         <h3>Total sum of efforts made by workers: <strong>{{ group.total_performance }}</strong></h3>
     </div>
