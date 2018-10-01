@@ -24,9 +24,7 @@ class WorkerDecision(Page):
 
 
 class AfterEffortWP(WaitPage):
-    def after_all_players_arrive(self):
-        self.group.set_payoffs()
-
+    ...
 
 from .forms import WBFormset
 
@@ -75,12 +73,24 @@ class PrincipalPunishment(Page):
         return ['punishment_worker_{}'.format(i.worker_id) for i in self.group.get_workers()]
 
 
+class BeforeResultsWP(WaitPage):
+    def after_all_players_arrive(self):
+        self.group.set_payoffs()
+
+
+class Results(Page):
+    def vars_for_template(self):
+        return {'cost_of_effort': Constants.cost_effort_table[self.player.effort]}
+
+
 page_sequence = [
-    # Intro,
-    # IntroInfo,
-    # WorkerDecision,
-    # AfterEffortWP,
+    Intro,
+    IntroInfo,
+    WorkerDecision,
+    AfterEffortWP,
     WBDecision,
     PWaitingForSnitchersWP,
     PrincipalPunishment,
+    BeforeResultsWP,
+    Results,
 ]

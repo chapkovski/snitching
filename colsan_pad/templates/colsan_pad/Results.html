@@ -2,11 +2,54 @@
 {% load otree static %}
 
 {% block title %}
-    Page title
+    Results
 {% endblock %}
 
 {% block content %}
+    <div class="alert alert-primary" role="alert">
+        <h3>Your role is: <strong>{{ player.role }}</strong></h3>
+    </div>
+    <table class="table table-hover table-striped">
+        {% if player.role == 'principal' %}
+            {#            TODO: store endowment in player level#}
+            <tr>
+                <td>Your initial endowment:</td>
+                <td>{{ Constants.principal_endowment }}</td>
+            </tr>
+            <tr>
+                <td>Total amount of efforts by workers:</td>
+                <td>{{ group.total_performance }}</td>
+            </tr>
+            <tr>
+                <td>Total amount of deduction tokens you sent to workers:
+                </td>
+                <td>{{ group.total_punishment }}</td>
+            </tr>
 
+        {% else %}
+            {#            TODO: store endowment in player level#}
+            <tr>
+                <td>Your initial endowment:</td>
+                <td>{{ Constants.worker_wage }}</td>
+            </tr>
+            <tr>
+                <td>Total effort you made:</td>
+                <td>{{ player.effort }}</td>
+            </tr>
+            <tr>
+                <td>Cost of this effort:</td>
+                <td>{{ cost_of_effort }}</td>
+            </tr>
+            <tr>
+                <td>Punishment received:</td>
+                <td>{{ player.get_punishment_received }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>Your payoff:</td>
+            <td>{{ player.payoff }}</td>
+        </tr>
+    </table>
     {% next_button %}
 {% endblock %}
 
