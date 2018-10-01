@@ -80,7 +80,8 @@ class BeforeResultsWP(WaitPage):
 
 class Results(Page):
     def vars_for_template(self):
-        return {'cost_of_effort': Constants.cost_effort_table[self.player.effort]}
+        if self.player.role()=='worker':
+            return {'cost_of_effort': Constants.cost_effort_table[self.player.effort]}
 
 
 page_sequence = [
