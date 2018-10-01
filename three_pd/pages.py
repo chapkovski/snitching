@@ -3,22 +3,40 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
-    pass
+class EPage(Page):
+    def is_displayed(self):
+        return self.player.role() != 'principal'
 
 
-class ResultsWaitPage(WaitPage):
+class Intro(EPage):
+    ...
 
-    def after_all_players_arrive(self):
-        pass
+
+class SendingMoney(EPage):
+    ...
+
+
+class ColsanBeliefs(Page):
+    ...
+
+
+class SendingBeliefs(EPage):
+    ...
+
+
+class Survey(Page):
+    ...
 
 
 class Results(Page):
-    pass
+    ...
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
-    Results
+    Intro,
+    SendingMoney,
+    ColsanBeliefs,
+    SendingBeliefs,
+    Survey,
+    Results,
 ]

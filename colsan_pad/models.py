@@ -3,7 +3,6 @@ from otree.api import (
     Currency as c, currency_range
 )
 
-
 author = 'Philipp Chapkovski, Valeria Maggian, Luca Corazzini. Chapkovski@gmail.com'
 
 doc = """
@@ -18,11 +17,17 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        # could be as well stored at session level but for the future safer at the group if we run mixed sessions
+        info = self.session.config.get('info', False)
+        wb = self.session.config.get('wb', False)
+        for g in self.get_groups():
+            g.info_treatment, g.wb_treatment = info, wb
 
 
 class Group(BaseGroup):
-    pass
+    info_treatment = models.BooleanField()
+    wb_treatment = models.BooleanField()
 
 
 class Player(BasePlayer):

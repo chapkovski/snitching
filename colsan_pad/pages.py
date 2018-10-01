@@ -3,22 +3,31 @@ from ._builtin import Page, WaitPage
 from .models import Constants
 
 
-class MyPage(Page):
-    pass
+class Intro(Page):
+    ...
 
 
-class ResultsWaitPage(WaitPage):
-
-    def after_all_players_arrive(self):
-        pass
+class IntroInfo(Page):
+    ...
 
 
-class Results(Page):
-    pass
+class EmployeeDecision(Page):
+    ...
+
+
+class WBDecision(Page):
+    ...
+
+
+class PrincipalPunishment(Page):
+    ...
 
 
 page_sequence = [
-    MyPage,
-    ResultsWaitPage,
-    Results
+    Intro,
+    IntroInfo,
+    EmployeeDecision,
+    WBDecision,
+    PrincipalPunishment,
+
 ]
