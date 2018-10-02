@@ -13,13 +13,13 @@ First stage of a colsan study on snitching: multiple-agents-one-principal with r
 
 class Constants(BaseConstants):
     name_in_url = 'colsan_pad'
-    players_per_group = 3  # todo: in prod to 5
+    players_per_group = 4  # todo: in prod to 4
     num_rounds = 1
     pun_coef = 2  # coefficient for punishment by a principal
     worker_wage = 100  # todo: keep in currency?
     cost_effort_table = {0: 0, 1: 5, 2: 12, 3: 18, 4: 24, 5: 35, 6: 42, 7: 56, }
     max_punishment = 10  # todo: limit it somehow in total
-    principal_endowment = 100
+    principal_endowment = 200
     principal_coef = 10
 
 
@@ -67,7 +67,9 @@ class Group(BaseGroup):
         # TODO: store wage in player field
         tot_wages = sum([Constants.worker_wage for w in self.get_workers()])
 
-        return Constants.principal_endowment - tot_wages + self.total_performance() * Constants.principal_coef \
+        return Constants.principal_endowment - \
+               tot_wages + self.total_performance() * \
+                           Constants.principal_coef \
                - self.total_punishment()
 
 
@@ -109,6 +111,9 @@ class Player(BasePlayer):
         return Constants.worker_wage - Constants.cost_effort_table[self.effort] - self.get_punishment_received()
 
         # TODO: move it into custom model without this BS.
+
+
+# TODO: NB!!! add a slightly different payoff as STAGE 2
 
 
 for i in range(1, Constants.players_per_group):

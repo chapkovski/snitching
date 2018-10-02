@@ -85,13 +85,13 @@ class Results(Page):
 
 
 page_sequence = [
-    Intro,
-    IntroInfo,
-    WorkerDecision,
-    AfterEffortWP,
+    # Intro,
+    # IntroInfo,
+    # WorkerDecision,
+    # AfterEffortWP,
     WBDecision,
-    PWaitingForSnitchersWP,
-    PrincipalPunishment,
-    BeforeResultsWP,
-    Results,
+    # PWaitingForSnitchersWP,
+    # PrincipalPunishment,
+    # BeforeResultsWP,
+    # Results,
 ]
