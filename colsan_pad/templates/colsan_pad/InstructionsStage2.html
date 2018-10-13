@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions for Stage 2
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-primary" role="alert">
+        <h3>DEBUG:: Your role is: <strong>{{ player.role }}</strong></h3>
+    </div>
+   {% include 'includes/instruction_block_stage2.html' %}
+    <div class="my-3">
+        {% next_button %}
+    </div>
+{% endblock %}

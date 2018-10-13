@@ -1,15 +1,34 @@
 from otree.api import Currency as c, currency_range
 from ._builtin import Page, WaitPage
 from .models import Constants
+from .forms import WBFormset
+
+
+class Stage1Page(Page):
+    _allow_custom_attributes = True
+
+    def extra_is_displayed(self):
+        return True
+
+    def is_displayed(self):
+        return self.group.stage == 1 and self.extra_is_displayed()
 
 
 class Intro(Page):
-    ...
+    # todo: later on move intro and results under one umbrella to deal with dynamic template names
+    _allow_custom_attributes = True
 
+    def get_template_names(self):
+        return ['colsan_pad/InstructionsStage{}.html'.format(self.group.stage)]
 
-class IntroInfo(Page):
     def is_displayed(self):
-        return self.group.info_treatment
+        # we don't show instructions to a Principal at stage 2 (because he skips everything)
+        return not (self.group.stage == 2 and self.player.role() == 'principal')
+
+
+class IntroInfo(Stage1Page):
+    def extra_is_displayed(self):
+        return self.group.info_treatment and self.player.role() == 'worker'
 
 
 class WorkerDecision(Page):
@@ -26,13 +45,11 @@ class WorkerDecision(Page):
 class AfterEffortWP(WaitPage):
     ...
 
-from .forms import WBFormset
 
-
-class WBDecision(Page):
+class WBDecision(Stage1Page):
     _allow_custom_attributes = True
 
-    def is_displayed(self):
+    def extra_is_displayed(self):
         return self.group.wb_treatment and self.player.role() == 'worker'
 
     def vars_for_template(self):
@@ -50,18 +67,16 @@ class WBDecision(Page):
         else:
             return self.render_to_response(context)
         return super().post()
-        # form_model = 'player'
-        # form_fields = ['wb']
 
 
 class PWaitingForSnitchersWP(WaitPage):
     ...
 
 
-class PrincipalPunishment(Page):
+class PrincipalPunishment(Stage1Page):
     form_model = 'group'
 
-    def is_displayed(self):
+    def extra_is_displayed(self):
         return self.player.role() == 'principal'
 
     def vars_for_template(self):
@@ -79,19 +94,24 @@ class BeforeResultsWP(WaitPage):
 
 
 class Results(Page):
+    _allow_custom_attributes = True
+
+    def get_template_names(self):
+        return ['colsan_pad/Stage{}Results.html'.format(self.group.stage)]
+
     def vars_for_template(self):
-        if self.player.role()=='worker':
+        if self.player.role() == 'worker':
             return {'cost_of_effort': Constants.cost_effort_table[self.player.effort]}
 
 
 page_sequence = [
-    # Intro,
-    # IntroInfo,
-    # WorkerDecision,
-    # AfterEffortWP,
+    Intro,
+    IntroInfo,
+    WorkerDecision,
+    AfterEffortWP,
     WBDecision,
-    # PWaitingForSnitchersWP,
-    # PrincipalPunishment,
-    # BeforeResultsWP,
-    # Results,
+    PWaitingForSnitchersWP,
+    PrincipalPunishment,
+    BeforeResultsWP,
+    Results,
 ]

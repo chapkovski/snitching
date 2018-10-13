@@ -1,0 +1,99 @@
+{% load otree %}
+<h3>Part 1:</h3>
+<div class="card">
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                Each period in Part 1 of the study consists of 4 stages.
+            </li>
+            <li class="list-group-item">
+                In Stage 1 Each participant of type B receives in the beginning of each period an endowment
+                of {{ Constants.principal_endowment }}.
+            </li>
+            <li class="list-group-item">
+                Out of this amount Participant B sends to each of Participants A a fixed amount of
+                {{ Constants.worker_wage }}.
+            </li>
+
+            <li class="list-group-item">
+                {#                todo: remove hardcoding #}
+                In Stage 2 a Participant A chooses an effort level (any integer number between 0 and 7).
+            </li>
+            <li class="list-group-item">
+                For each effort level chosen by participant A there is an associated cost of effort. The cost of effort
+                can be
+                found in the following table:
+            </li>
+            <li class="list-group-item">
+
+                <table class="table">
+                    <tr>
+                        <th>Effort:</th>
+                        {% for i in Constants.cost_effort_table.keys %}
+                            <td>{{ i }}</td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th>Cost of effort:</th>
+                        {% for i in Constants.cost_effort_table.values %}
+                            <td>{{ i }}</td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </li>
+            <li class="list-group-item">
+                The level of effort that you chooses is multiplied by {{ Constants.principal_coef }},
+                and added to a payoff of Participant B.
+            </li>
+
+            <li class="list-group-item">
+                <p>Participant A payoff in the end of each period is calculated as follows:</p>
+                <p class="text-center"> Fixed amount received from Participant B <strong>-</strong> Cost of effort
+                    <strong>=</strong>
+                    Participant A payoff</p>
+
+
+            </li>
+            <li class="list-group-item">
+                <p>Participant B payoff in the end of each round is calculated as follows::</p>
+                <p class="text-center">Initial Endowment <strong>-</strong> Sum of fixed amounts sent to Participants A
+                    <strong>+</strong> sum
+                    of efforts made by Participants A <strong>
+                        x
+                    </strong> {{ Constants.principal_coef }}</p>
+
+            </li>
+
+            <li class="list-group-item">
+                {#                TODO: modify this example so its based on Constants not hardcoded#}
+                For example if Participant A chooses a level of effort 5, that decreases their payoff by
+                {{ Constants.cost_effort_table.5|c }} but increases the payoff of a Participant B
+                by {{ 50|c }}.
+            </li>
+            <li class="list-group-item">
+                Other Participants of type A face the similar choice. Their choice affects their own payoff and a payoff
+                of
+                a Participant B.
+            </li>
+            <li class="list-group-item">
+                In Stage 3 each Participant A decides for each effort  that other Participants A can make,
+                whether they would like to inform Participant B about effort levels of these specific Participants.
+            </li>
+         <li class="list-group-item">
+                In Stage 4 a Participant B observes a total sum of efforts made by all Participants A.
+                One participant A is chosen randomly in each period and the decisions of this particular Participant A
+             about informing a Participant B are implemented.
+
+            </li>
+        <li class="list-group-item">
+                For example, if some Participant A chose an effort 5, and another randomly picked Participant A
+            decides to inform Participant B about this, a Participant B will be informed about this effort level.
+            </li>
+        <li class="list-group-item">
+                In stage 4 Participant B can send deduction tokens to any Participant A. Each deduction token sent by a
+            Participant B reduces the payoff of the participant A by {{ Constants.pun_coef|c }}, but also decreases a
+            payoff of a Participant B by {{ 1|c }}.
+            </li>
+        </ul>
+    </div>
+</div>

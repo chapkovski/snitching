@@ -1,0 +1,60 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions for Stage 1
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-primary" role="alert">
+        <h3>DEBUG:: Your role is: <strong>{{ player.role }}</strong></h3>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    The experiment consists of {{ Constants.num_rounds }} decision-making periods.
+                </li>
+                <li class="list-group-item">
+                    Each period, you will be randomly and anonymously placed into a group which consists
+                    of {{ Constants.players_per_group }}
+                    participants.
+                </li>
+                <li class="list-group-item">
+                    In each group there are
+                    {{Constants.workers_per_group}} participants of type A, and one participant of type B.
+                </li>
+                <li class="list-group-item">
+                    At the beginning of the first period you will be randomly assigned either as participant A or
+                    participant B.
+                </li>
+                <li class="list-group-item">
+                    You will remain in the same role assignment throughout the entire experiment.
+                </li>
+
+                <li class="list-group-item">
+                    So, if you are assigned as participant A then you will stay as participant A throughout the entire
+                    experiment.
+                </li>
+                <li class="list-group-item">
+                    The experiment is divided into two parts: Part 1 and Part 2. Part 1 consists of {{ Constants.num_s1_rounds }}
+                    decision-making period{{  Constants.num_s1_rounds|pluralize }}. Part 2 consists of {{ Constants.num_s2_rounds }}
+                    decision-making period{{  Constants.num_s2_rounds|pluralize }}.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {% include 'includes/instruction_block_stage1.html' %}
+    <div class="my-3">
+        {% next_button %}
+    </div>
+{% endblock %}

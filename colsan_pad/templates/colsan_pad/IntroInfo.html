@@ -2,19 +2,38 @@
 {% load otree static %}
 
 {% block title %}
-    Instructions for Stage 2
+    Info::
 {% endblock %}
 
 {% block content %}
     <div class="alert alert-primary" role="alert">
         <h3>Your role is: <strong>{{ player.role }}</strong></h3>
     </div>
-    <div class="card">
+    <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Important:</div>
         <div class="card-body">
-            <h4>Instructions for Stage 2 go here (for INFO treatment only)</h4>
+            <h5 class="card-title">Stage 2 Announcement</h5>
+            <p class="card-text">
+            <ul class="list-group list-group-flush card-text">
+                <li class="list-group-item card-text text-primary">
+                    After you complete Stage 1, you and other Participants of type A will take part in a Stage 2 of this
+                    study.
+                </li>
+                <li class="list-group-item text-primary">
+                    Participant B <strong>will not participate</strong> in Stage 2 of this study.
+                </li>
+                <li class="list-group-item text-primary">
+                    You can see the instructions for the Stage 2 below:
+                </li>
+
+            </ul>
+
+
+            </p>
         </div>
     </div>
-      <div class="my-3">
+    {% include 'includes/instruction_block_stage2.html' %}
+    <div class="my-3">
         {% next_button %}
     </div>
 

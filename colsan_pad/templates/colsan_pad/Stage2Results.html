@@ -1,0 +1,39 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-primary" role="alert">
+        <h3>Your role is: <strong>{{ player.role }}</strong></h3>
+    </div>
+    <table class="table table-hover table-striped">
+        {% if player.role == 'worker' %}
+            <tr>
+                <td>Your initial endowment:</td>
+                <td>{{ player.endowment }}</td>
+            </tr>
+            <tr>
+                <td>Total effort you made:</td>
+                <td>{{ player.effort }}</td>
+            </tr>
+            <tr>
+                <td>Cost of this effort:</td>
+                <td>{{ cost_of_effort }}</td>
+            </tr>
+            <tr>
+                <td>Total effort made by other workers:</td>
+                <td>{{ player.effort_by_others }}</td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td>Your payoff in this Stage:</td>
+            <td>{{ player.payoff }}</td>
+        </tr>
+    </table>
+    {% next_button %}
+{% endblock %}
+
+

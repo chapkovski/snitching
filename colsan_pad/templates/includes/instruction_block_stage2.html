@@ -1,0 +1,33 @@
+{% load otree %}
+<div class="card">
+
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                In Stage 2 you have to make the similar decision about amount of effort you will make as you do in Stage 1.
+            </li>
+            <li class="list-group-item">
+                The higher is the effort you choose the higher is the cost that will be deducted from your initial
+                endowment of {{ player.endowment }}.
+            </li>
+            <li class="list-group-item">
+                The level of effort that you chooses is multiplied by {{ Constants.principal_coef }}
+                and this amount is added to payoffs of other Participants A with whom you are matched.
+            </li>
+            <li class="list-group-item">
+                {#                TODO: modify this example so its based on Constants not hardcoded#}
+                For example if you choose a level of effort equal 5, that will decrease your payoff in this stage by
+                {{ Constants.cost_effort_table.5|c }} but will increase the payoff of each other Participant A
+                by {{ 50|c }}.
+            </li>
+            <li class="list-group-item">
+                Other Participants of type A face the similar choice. Their choice affects your payoff in Stage 2.
+            </li>
+            <li class="list-group-item">
+                For instance if another Participant A chooses a level of effort equal 5, that will decrease their payoff
+                by
+                {{ Constants.cost_effort_table.5|c }} but will increase your payoff by {{ 50|c }}.
+            </li>
+        </ul>
+    </div>
+</div>

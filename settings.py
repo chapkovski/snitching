@@ -15,9 +15,8 @@ SESSION_CONFIGS = [
     {
         'name': 'baseline',
         'display_name': "Baseline (NO info; No WB)",
-        'num_demo_participants': 4,
+        'num_demo_participants': 3,
         'app_sequence': ['colsan_pad',
-                         # 'three_pd'
                          ],
         'info': False,
         'wb': False,
@@ -25,9 +24,9 @@ SESSION_CONFIGS = [
     {
         'name': 'info_off_wb_on',
         'display_name': "info off; WB on",
-        'num_demo_participants': 4,
+        'num_demo_participants': 3,
         'app_sequence': ['colsan_pad',
-                         # 'three_pd'
+
                          ],
         'info': False,
         'wb': True,
